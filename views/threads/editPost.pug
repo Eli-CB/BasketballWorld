@@ -1,0 +1,7 @@
+extends ../layout
+block content
+    h1 Edit Post
+    form(method='POST' action='/threads/editPost/'+post.parentThread+"/"+post._id)
+        label Content
+            textarea#name(type='text' name='content' value=post.content)
+        input(type='submit' value='CONFIRM CHANGES')

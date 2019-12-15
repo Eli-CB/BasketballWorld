@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+    h1 DISCOVER
+    <hr/>
+    h4 Tags are used to filter threads. See what tags other people are using below!
+        if allTags
+            each item in allTags
+                    div(style={display: 'flex'})
+                        div(style={flex: 0.50})
+                            h1= item.tags
+                            h6= "popularity: " + item.count + " user(s)"
+                        div(style={flex: 0.50})
+                            - if (profile.tags.includes(item.tags))
+                                        form(method = "POST" action='/profile/pulltag')
+                                            input(type="hidden" name="tag" value=item.tags)
+                                            input(type='submit' value='X')
+                            - else
+                                form(method = "POST" action='/profile/pushtag')
+                                    input(type="hidden" name="new" value=item.tags)
+                                    input(type='submit' value='Add')

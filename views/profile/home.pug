@@ -1,0 +1,74 @@
+extends ../layout
+
+block content
+    h1 PROFILE
+    <hr/>
+
+    div(style={display: 'flex'})
+        div(style={flex: 0.5})
+            h1 Threads
+            if threads
+                <br/>
+                each thread in threads
+                    if thread.tags
+                        each tag in thread.tags
+                            if tag
+                                text(style={color: 'blue'})= "#" + tag + " "
+                    a(href="/threads/" + thread._id style={color: 'black'})
+                        h2= thread.title
+                    <br/>
+        div(style={flex: 0.5})
+            h1 My Threads
+            if myThreads
+                <br/>
+                each thread in myThreads
+                    div(style={display: 'flex'})
+                        div(style={flex: 0.76})
+                            if thread.tags
+                                each tag in thread.tags
+                                    if tag
+                                        text(style={color: 'blue'})= "#" + tag + " "
+                            h2= thread.title
+                            p= thread.description
+                        div(style={flex: 0.12})
+                            form(method='POST' action='/threads/edit/' + thread._id)
+                                input(type='submit' value='Edit')
+                        div(style={flex: 0.12})
+                            form(method='POST' action='/threads/delete/' + thread._id)
+                                input(type='submit' value='X')
+                    <br/>
+    <hr/>
+
+    div(style={display:'flex'})
+        div(style={flex:0.5})
+            h1 Tags
+            if profile.tags
+                ul
+                    each tag in profile.tags
+                        div(style={display:'flex'})
+                            div(style={flex: 0.25})
+                                h4= tag
+                            div(style={flex: 0.75})
+                                form(method = "POST" action='/profile/pulltag')
+                                    input(type="hidden" name="tag" value=tag)
+                                    input(type='submit' value='X')
+                        nbsp
+                        <br />
+            form(method = "POST" action='/profile/pushtag')
+                label(for='new') Create Tag:
+                a(href="/profile/discover" style={float: 'right', color: "black", "text-decoration": "none"})
+                    text 🛈
+                input#new(type='text' name='new' placeholder='Tag')
+                input(type='submit' value='Submit')
+        div(style={flex:0.5})
+            h1 Details
+            form(method = "POST" action='/profile/editpassword')
+                label(for='password') Edit Password:
+                input#password(type='text' name='password' placeholder='Password')
+                input(type='submit' value='Submit')
+
+            form(method = "POST" action='/profile/editemail')
+                label(for='email') Edit Email:
+                input#email(type='text' name='email' value=profile.email)
+                input(type='submit' value='Submit')
+

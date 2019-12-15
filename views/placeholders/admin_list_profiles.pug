@@ -1,0 +1,23 @@
+extends ../layout.pug
+
+block content
+    //ul
+    //    each profile, i in profiles
+    //        li #{profile.name}
+    //        li
+    //            a(href="/admin/delete/"+profile._id) delete #{profile._id}
+    //        li
+    each profile, i in profiles
+        h2 username: #{profile.name} level: #{profile.level}
+        li
+            a(href="/admin/delete/"+profile._id) delete
+            |
+        li
+            a(href="/admin/makeNormal/"+profile._id) make normal user
+            |
+        li
+            a(href="/admin/makeAdmin/"+profile._id) make admin
+            |
+        li
+            a(href="/admin/ban/"+profile._id) ban
+            |

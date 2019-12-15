@@ -1,0 +1,20 @@
+extends ../layout
+block content
+    h2=thread.title
+    p=thread.description
+    if (thisIsMine)
+        a(href="/threads/editThread/" + thread._id) edit this thread
+    each post, i in posts
+        h3=post.date
+        h4=post.author
+        p=post.content
+        if (isMine[i])
+            a(href="/threads/editPost/"+post._id) edit
+    form(method="POST" action=thread.target)
+        |Content
+        br
+        textarea(name="content")
+        br
+        input(type="submit")
+    if (message)
+        p=message

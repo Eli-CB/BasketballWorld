@@ -1,0 +1,65 @@
+extends ../layout
+block content
+    h1 TRENDING THREADS
+    if user
+        a(href="/threads/create") Submit A Thread
+        p
+
+    each thread, i in threads
+
+        <br>
+        if (thread.report)
+            if (thread.report > 0)
+                div(style={display: 'flex', 'box-shadow': '0 4px 8px 0 rgba(0, 0, 0, 0.2)', 'background-color': 'orangered'})
+                    text WARNING THIS THREAD HAS BEEN REPORTED
+
+        div(style={display: 'flex', 'box-shadow': '0 4px 8px 0 rgba(0, 0, 0, 0.2)', 'background-color': '#f1f1f1'})
+            div(style={flex: 0.03})
+                if thread.score
+                    h1= thread.score
+                else
+                    h1= 0
+            div(style={flex: 0.30})
+                if thread.tags
+                    each tag in thread.tags
+                        if tag
+                            text(style={color: 'blue'})= "#" + tag + " "
+                a(href=links[i] style={color: 'black'})
+                    h1= threads[i].title
+                if (thread.report)
+                    if (thread.report == 0)
+                        a(href="/threads/report/" + links[i].substring(9) style={"color": "orangered", "text-decoration": "none"})
+                            text 🛈 REPORT
+                else
+                    a(href="/threads/report/" + links[i].substring(9) style={"color":"orangered", "text-decoration": "none"})
+                        text 🛈 REPORT
+
+            div(style={flex: 0.33})
+                p #{threads[i].description} US
+                p created by: #{thread.author} at #{thread.date}
+
+            div(style={flex: 0.33})
+                if profile
+                    div(style={display: 'flex'})
+                        div(style={flex: 0.5})
+                            - if (profile.likes)
+                                - if (profile.likes.includes(links[i].substring(9)))
+                                        form(method='POST' action='pullLike/' + links[i].substring(9))
+                                            input(type='submit' value='Cancel Like')
+                                - else
+                                    form(method='POST' action='pushLike/' + links[i].substring(9))
+                                        input(type='submit' value='Like')
+                            - else
+                                form(method='POST' action='pushLike/' + links[i].substring(9))
+                                    input(type='submit' value='Like')
+                        div(style={flex: 0.5})
+                            - if (profile.dislikes)
+                                - if (profile.dislikes.includes(links[i].substring(9)))
+                                        form(method='POST' action='pullDislike/' + links[i].substring(9))
+                                            input(type='submit' value='Cancel Dislike')
+                                - else
+                                    form(method='POST' action='pushDislike/' + links[i].substring(9))
+                                        input(type='submit' value='Dislike')
+                            - else
+                                form(method='POST' action='pushDislike/' + links[i].substring(9))
+                                    input(type='submit' value='Dislike')

@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+    h1(style='padding-left: 15px; font-weight:bold') LOGIN
+
+    form(method="POST" action="/profile/login")
+        br
+        | Username
+        input(type="text" name="name")
+        br
+        | Password
+        input(type="password" name="password")
+        br
+        input(type="submit")
+    if message
+        p message: #{message}
+    p Don't Have An Account?
+    a(href="/profile/create") Create An Account
+

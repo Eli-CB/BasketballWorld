@@ -1,0 +1,45 @@
+doctype html
+html
+  -var site_name = 'Basketball World'
+
+  head
+    //Browser tab title and icon, css
+    title= site_name
+    link(rel='shortcut icon', href='/img/logo_favicon.ico', type="image/x-icon")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    //override with 'block banner' in a page
+    block banner
+      div.banner
+        li
+          a(href='/') Home
+        li
+          a(href='/threads/view') Trending Threads
+        li
+          a(href='/shoes/browse') Shoes
+        li
+        if user
+          li
+            a(href='/profile/home') #{user}
+          li
+          li
+            a(href="/profile/logout") Logout
+          li
+        else
+          li
+            a(href="/profile/login") Login
+          li
+          li
+            a(href="/profile/create") Create Account
+          li
+        li(style={float:'right'})
+          a(href="/admin") Administrator Panel
+        li
+
+      div.display
+        img(src='/img/logo_favicon.ico', style='width:45px; display: block; position: absolute; left:15px ; top:50%; transform: translateY(-50%)')
+        h1(style='display:inline-block; font-weight: bold;')= 'BASKETBALL WORLD'
+
+  body
+    div.content
+      block content

@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+    h1(style='padding-left: 15px; font-weight:bold') CREATE ACCOUNT
+    form(method="POST" action="/profile/create")
+        br
+        | Username
+        input(type="text" name="name")
+        br
+        | Email
+        input(type="text" name="email")
+        br
+        | Password
+        input(type="password" name="password")
+        br
+        | Password Confirm
+        input(type="password" name="confirmpassword")
+        br
+        input(type="submit")
+    if message
+        p message #{message}
+    p Already Have An Account?
+        a(href="/profile/login") Login
+
+    //form(method = "POST" action='/profile/create')
+    //    label(for='fname') Username
+    //    input#fname(type='text' name='name' placeholder='Kawhi Leonard')
+    //    label(for='email') Email
+    //    input#email(type='email' name='email' placeholder='kawhi@gmail.com')
+    //    label(for='pw') Password:
+    //    input#pw(type='password' name='password')
+    //    label(for='pw2') Confirm Password:
+    //    input#pw2(type='password' name='confirmPassword')
+    //    input(type='submit' value='REGISTER' onclick="window.location='/profile/account';")

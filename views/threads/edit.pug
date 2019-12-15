@@ -1,0 +1,28 @@
+extends ../layout
+block content
+    h1 Edit A Thread
+    form(method='POST' action='/threads/confirm/')
+        input(type="hidden" name="_id" value=thread._id)
+        label Title
+            input#title(type='text' name='title' value=thread.title)
+        label Content
+            input#name(type='text' name='description' value=thread.description)
+        label Tags (optional)
+            if thread.tags
+                if thread.tags[0]
+                    input#tag0(type='text' name='tag0' value=thread.tags[0])
+                else
+                    input#tag0(type='text' name='tag0')
+                if thread.tags[1]
+                    input#tag1(type='text' name='tag1' value=thread.tags[1])
+                else
+                    input#tag1(type='text' name='tag1')
+                if thread.tags[2]
+                    input#tag2(type='text' name='tag2' value=thread.tags[2])
+                else
+                    input#tag2(type='text' name='tag2')
+            else
+                input#tag0(type='text' name='tag0')
+                input#tag1(type='text' name='tag1')
+                input#tag2(type='text' name='tag2')
+        input(type='submit' value='CONFIRM CHANGES')
