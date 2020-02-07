@@ -1,6 +1,15 @@
-# BasketballWorld
+# BasketballWorld - A Basketball Forum
 
-# A basketball forum
+# Features:
+  -Login / Create Account
+  -Threads View
+  -Create a Thread
+  -Automatic Thread Censoring
+  -Profile Page view
+  -Thread Tagging
+  -Thread Editing
+  -Profile Editing
+  -Administrator Priviliges (delete threads and accounts)
 
 ![Login Page](https://user-images.githubusercontent.com/22223464/73993141-31a8d100-4906-11ea-8e5f-db887303b51e.JPG)
 ![Failed Login](https://user-images.githubusercontent.com/22223464/73993153-39687580-4906-11ea-98d9-69c67066bb20.JPG)
